@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+    {% block content %}
+    <h2>Welcome, {{ login }}</h2>
+
+    {% if error %}
+        <p class='error'>{{ error }}</p>
+    {% endif %}
+
+    {% endblock %}

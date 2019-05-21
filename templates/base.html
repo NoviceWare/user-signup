@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Signup</title>
+    <style type="text/css">
+      .error {
+          color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>User Signup</h1>
+    {% block content %}
+    <form method="POST">
+      <table>
+        <tr>
+          <td><label for="login">Username</label></td>
+          <td>
+            <input id="login" name="login" type="text" value="{{ request.form['login'] }}">
+            <span class="error">
+          </td>
+          <td>
+	      {% with errors = get_flashed_messages(category_filter=["loginerror"]) %}
+	      {% if errors %}
+	      <div class="alert-message block-message error">
+		<ul>
+		  {%- for msg in errors %}
+		  <li>{{ msg }}</li>
+		  {% endfor -%}
+		</ul>
+	      </div>
+	      {% endif %}
+	      {% endwith %}
+	    </span>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="password">Password</label></td>
+          <td>
+            <input name="password" type="password">
+            <span class="error"></span>
+           <td>
+	      {% with errors = get_flashed_messages(category_filter=["passworderror"]) %}
+	      {% if errors %}
+	      <div class="alert-message block-message error">
+		<ul>
+		  {%- for msg in errors %}
+		  <li>{{ msg }}</li>
+		  {% endfor -%}
+		</ul>
+	      </div>
+	      {% endif %}
+	      {% endwith %}
+         </td>
+        </tr>
+        <tr>
+          <td><label for="verify">Verify Password</label></td>
+          <td>
+            <input name="verify" type="password">
+            <span class="error"></span>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="email">Email (optional)</label></td>
+          <td>
+            <input id="email" name="email" value="{{ request.form['email'] }}">
+            <span class="error"></span>
+          </td>
+	  <td>
+	      {% with errors = get_flashed_messages(category_filter=["emailerror"]) %}
+	      {% if errors %}
+	      <div class="alert-message block-message error">
+		<ul>
+		  {%- for msg in errors %}
+		  <li>{{ msg }}</li>
+		  {% endfor -%}
+		</ul>
+	      </div>
+	      {% endif %}
+	      {% endwith %}
+         </td>
+
+        </tr>
+      </table>
+      <input type="submit">
+    </form>
+
+    {% if error %}
+    <p class='error'>{{ error }}</p>
+    {% endif %}
+
+    {% endblock %}
+
+  </body>
+</html>
