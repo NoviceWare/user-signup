@@ -21,10 +21,6 @@ def check_email(string):
         domain_dot_present = domain_dot_index >= 0
         return domain_dot_present
 
-#@app.route("/welcome", methods=['GET', 'POST'])
-#def welcome(login):
-#    return render_template("welcome.html", login=login)
-
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
